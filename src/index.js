@@ -17,6 +17,7 @@ fetch(
       companyNames.push(shareList[i].share)
     }
     console.log(companyNames)
+    console.log(shareList)
   })
   .catch((err) => console.error(err))
 
