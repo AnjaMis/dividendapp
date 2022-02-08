@@ -6,6 +6,9 @@ import reportWebVitals from './reportWebVitals'
 
 var shareList = []
 var companyNames = []
+var dividendLastYear = []
+var prices = []
+var tyield = []
 
 fetch(
   'https://gist.githubusercontent.com/VincentLeV/a0c326b9cbeabf63b4e5e02aa9779f6c/raw/b916a9e3d40aef926bf7e3b9b4db308d7da1ca5d/shares.json',
@@ -15,10 +18,23 @@ fetch(
     shareList = data
     for (var i = 0; i < shareList.length; i++) {
       companyNames.push(shareList[i].share)
+      prices.push(shareList[i].price)
+      dividendLastYear.push(shareList[i].dividendHistory[0].dividend)
+      tyield.push((prices[i] / dividendLastYear[i]).toFixed(2))
     }
     console.log(companyNames)
-    console.log(shareList)
-    console.log(companyNames)
+    console.log(prices)
+    console.log(dividendLastYear)
+    console.log(tyield)
+
+    for (var i = 0; i < tyield.length; i++) {
+      console.log(
+        'For company ' +
+          companyNames[i] +
+          " previous year's dividend yield compared to current price is " +
+          tyield[i],
+      )
+    }
   })
   .catch((err) => console.error(err))
 
